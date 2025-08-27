@@ -1,0 +1,36 @@
+form {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid red; /* TODO: Change border */
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.input-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 770px;
+    margin-bottom: 10px;
+}
+
+.input-form input {
+    padding: 8px 10px;
+}
+
+.input-form-aggregator {
+
+}
+
+.btn-add-xp {
+    width: 160px;
+}
+
+.input-form-inline-field {
+    display: flex;
+    gap: 2px;
+}
+
+.btn-create-roadmap {
+    width: 160px
+}

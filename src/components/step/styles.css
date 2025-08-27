@@ -1,0 +1,43 @@
+.step-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.step-timeline {
+    /* background-color: red; */
+    width: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.line {
+    width: 3px;
+    display: flex;
+    justify-content: center;
+    /* TODO: Talvez tenha que alterar a medida que o card cresça */
+    padding: 20px 0;
+}
+
+.status {
+    border-radius: 50px;
+    height: 10px;
+    width: 30px;
+    padding: 15px;
+    display: flex;;
+    align-items: center;
+    justify-content: center;
+    color: var(--background);
+}
+
+.step-card-container {
+    padding: 10px;
+    /* TODO: Change color */
+    border: 1px solid red;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.step-completed {
+    text-decoration: line-through;
+}
