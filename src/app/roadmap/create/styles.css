@@ -1,7 +1,8 @@
 form {
     display: flex;
     flex-direction: column;
-    border: 1px solid red; /* TODO: Change border */
+    border: 1px solid red;
+    /* TODO: Change border */
     border-radius: 10px;
     margin: 10px;
     padding: 10px;
@@ -18,9 +19,7 @@ form {
     padding: 8px 10px;
 }
 
-.input-form-aggregator {
-
-}
+.input-form-aggregator {}
 
 .btn-add-xp {
     width: 160px;

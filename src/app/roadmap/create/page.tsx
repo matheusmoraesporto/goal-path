@@ -6,9 +6,15 @@ export default function Page() {
   // }
 
   return (
-    <form>
+    <form className="centered-div">
       <div className="input-form">
         <label>Nome do plano de estudos:</label>
+        <input type="text" name="name" />
+      </div>
+
+      <div className="input-form">
+        <label>Em qual nível você se vê, como desenvolvedor?:</label>
+        {/* TODO: Trocar para select */}
         <input type="text" name="name" />
       </div>
 
@@ -77,7 +83,7 @@ export default function Page() {
       </div>
 
       <div className="input-form">
-        <label></label>
+        <label>Você tem preferência por conteúdo pago ou gratuito?</label>
         <div>
           <input type="radio" name="accessibleContent" id="free" />
           <label> Gratuito</label>
@@ -91,7 +97,28 @@ export default function Page() {
           <label> Ambos</label>
         </div>
       </div>
-      <button className="btn-create-roadmap" type="submit">Create Road Map</button>
+
+      <div className="input-form">
+        <label>
+          Você tem preferência por idioma do conteúdo que será sugerido?
+        </label>
+        <div>
+          <input type="radio" name="language" id="english" />
+          <label> Inglês</label>
+        </div>
+        <div>
+          <input type="radio" name="language" id="portuguese" />
+          <label> Português</label>
+        </div>
+        <div>
+          <input type="radio" name="language" id="both" />
+          <label> Ambos</label>
+        </div>
+      </div>
+
+      <button className="btn-create-roadmap" type="submit">
+        Create Road Map
+      </button>
     </form>
   );
 }

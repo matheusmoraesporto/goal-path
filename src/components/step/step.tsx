@@ -25,14 +25,18 @@ export default function StepTile({
           className="line"
           style={{
             height: lastChild ? "100%" : "120%",
-            backgroundColor: isCompleted ? "green" : "blue",
+            backgroundColor: isCompleted
+              ? "rgba(46, 235, 166, 1)"
+              : "rgba(39, 140, 255, 1)",
           }}
         >
           {/* TODO: Trocar por um ícone */}
           <p
             className="status"
             style={{
-              backgroundColor: isCompleted ? "green" : "blue",
+              backgroundColor: isCompleted
+                ? "rgba(46, 235, 166, 1)"
+                : "rgba(39, 140, 255, 1)",
             }}
           >
             {isCompleted ? "V" : "..."}

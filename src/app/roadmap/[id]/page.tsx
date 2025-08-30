@@ -14,7 +14,7 @@ export default function Page() {
   // }
 
   return (
-    <div className="steps-container">
+    <div className="steps-container centered-div">
       {steps.map((st: Step, i: number) => (
         <StepTile
           key={st.name}

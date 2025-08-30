@@ -40,3 +40,14 @@ a {
     color-scheme: dark;
   }
 } */
+
+.centered-div {
+  width: 80%;
+  margin: 0 auto;
+}
+
+@media (max-width: 770px) {
+  .centered-div {
+    width: 98%;
+  }
+}
