@@ -11,7 +11,6 @@ form {
 .input-form {
     display: flex;
     flex-direction: column;
-    max-width: 770px;
     margin-bottom: 10px;
 }
 
@@ -31,5 +30,5 @@ form {
 }
 
 .btn-create-roadmap {
-    width: 160px
+    width: 160px;
 }
