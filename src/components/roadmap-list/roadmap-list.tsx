@@ -1,6 +1,6 @@
 "use client";
 
-import { fetchDataFromOpenAI } from "goal-path/service/openAI";
+import { fetchDataFromOpenAI } from "goal-path/service/openAI/openAI";
 import "./styles.css";
 import Link from "next/link";
 import { RoadMap } from "goal-path/app/types/step";
@@ -19,7 +19,7 @@ export default function RoadmapList() {
         <h2>Road map list</h2>
         {/* TODO: Alterar para um Link que redirecione para a página de criação de road map */}
         <button
-          onClick={() => fetchDataFromOpenAI()}
+          // onClick={() => fetchDataFromOpenAI()}
           className="btn-go-to-create-roadmap"
         >
           Criar novo road map

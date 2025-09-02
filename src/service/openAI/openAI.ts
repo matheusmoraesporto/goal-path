@@ -1,19 +1,22 @@
 "use server";
 
 import OpenAI from "openai";
+import { generateUserPreferencesPrompt } from "./templates/user-preferences";
+import responseTemplate from "./templates/expected-response";
+import { UserPreferences } from "goal-path/app/types/user-preferences";
 
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-const fetchDataFromOpenAI = async () => {
+const fetchDataFromOpenAI = async (userPreferences: UserPreferences) => {
   try {
     const res = await client.responses.create({
       model: "gpt-5-nano",
       tools: [{ type: "web_search" }],
-      // TODO: Aqui deverá ser aplicado o template para criação do road map
-      // baseado nas preferências do usuário
-      input: "Gere para mim uma lista de conteúdos para aprender React",
+      input: `
+        ${generateUserPreferencesPrompt(userPreferences)}
+        ${responseTemplate}`,
     });
     console.log("OpenAI response", res);
     console.log("OpenAI response output", res.output);

@@ -1,9 +1,26 @@
+"use client";
+
+import { useState } from "react";
 import "./styles.css";
+import { Experience } from "goal-path/app/types/user-preferences";
 
 export default function Page() {
-  // const onClickAddExperience = (e: MouseEvent<HTMLButtonElement, MouseEvent>) => {
-  //   console.log('Im clicked');
-  // }
+  const [experiences, setExperiences] = useState<Experience[]>([]);
+
+  const onClickAddExperience = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    console.log("Im clicked");
+
+    // TODO: Mudar para pegar os valores dos inputs
+    const newExperience: Experience = {
+      tech: "React",
+      metricDuration: {
+        metric: "years",
+        amount: 2,
+      },
+    };
+    setExperiences([...experiences, newExperience]);
+  };
 
   return (
     <form className="centered-div">
@@ -31,11 +48,34 @@ export default function Page() {
             - tempo de experiência. Ex: dois inputs, um númeor para quantidade e outro para anos ou meses
         */}
         <label>Quais tecnologias você possui experiência?</label>
+        {experiences.map(({ tech, metricDuration }, index) => (
+          <div key={index} className="experience-container">
+            <span>{tech}</span>
+            <span>
+              {metricDuration.amount} {metricDuration.metric}
+            </span>
+            <button
+              className="btn-remove-xp"
+              type="button"
+              // TODO: Mover para uma função própria
+              onClick={() => {
+                const newExperiences = experiences.filter(
+                  (_, i) => i !== index
+                );
+                setExperiences(newExperiences);
+              }}
+            >
+              Remover
+            </button>
+          </div>
+        ))}
         <div className="input-form-aggregator">
           <input type="text" name="studyGoal" />
         </div>
         {/* <button onClick={onClickAddExperience}>Adicionar experiência</button> */}
-        <button className="btn-add-xp">Adicionar experiência</button>
+        <button className="btn-add-xp" onClick={onClickAddExperience}>
+          Adicionar experiência
+        </button>
       </div>
 
       <div className="input-form">
@@ -85,15 +125,15 @@ export default function Page() {
       <div className="input-form">
         <label>Você tem preferência por conteúdo pago ou gratuito?</label>
         <div>
-          <input type="radio" name="accessibleContent" id="free" />
+          <input type="radio" name="payment" id="free" />
           <label> Gratuito</label>
         </div>
         <div>
-          <input type="radio" name="accessibleContent" id="paid" />
+          <input type="radio" name="payment" id="paid" />
           <label> Pago</label>
         </div>
         <div>
-          <input type="radio" name="accessibleContent" id="both" />
+          <input type="radio" name="payment" id="both" />
           <label> Ambos</label>
         </div>
       </div>
