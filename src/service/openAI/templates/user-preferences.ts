@@ -9,7 +9,7 @@ import {
 } from "goal-path/app/types/utils";
 
 const generateUserPreferencesPrompt = (userPreferences: UserPreferences) => {
-  const { developerLevel, language, payment, roadmapDuration, studyGoal } =
+  const { developerLevel, language, payment, roadmapDuration, techGoal } =
     userPreferences;
   const translatedDevLevel = translateDeveloperLevel(developerLevel);
   const levelText =
@@ -21,7 +21,7 @@ const generateUserPreferencesPrompt = (userPreferences: UserPreferences) => {
   const languageText = handleLanguageText(language);
   const paymentText = handlePaymentText(payment);
 
-  return `A sua tarefa é criar um plano de estudos personalizado para ${studyGoal}.
+  return `A sua tarefa é criar um plano de estudos personalizado para ${techGoal}.
 	Considere que este plano de estudos é para ${levelText}, ${experiencesText}.
 	Considere que o plano de estudos deve ser projetado para durar aproximadamente ${
     roadmapDuration.amount

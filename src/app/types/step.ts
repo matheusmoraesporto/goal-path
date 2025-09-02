@@ -1,10 +1,11 @@
+import { UserPreferences } from "./user-preferences"
+
 export interface Step {
   name: string
   status: string
 }
 
-export interface RoadMap {
+export interface RoadMap extends UserPreferences {
   id: string
-  name: string
   steps: Step[]
 }

@@ -8,14 +8,14 @@ export type Metric = "years" | "months";
 
 export type FrequencyMetric = "weeks" | "months";
 
-export type Language = "portuguese" | "english" | "es" | "both";
+export type Language = "portuguese" | "english" | "both";
 
 export type Payment = "free" | "paid" | "both";
 
 export interface UserPreferences {
   roadmapName: string;
   developerLevel: DeveloperLevel;
-  studyGoal: string;
+  techGoal: string;
   experiences: Experience[];
   roadmapDuration: MetricDuration;
   frequency: Frequency;
