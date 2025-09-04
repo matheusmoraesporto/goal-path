@@ -1,6 +1,6 @@
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #004a5f;
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -48,6 +48,28 @@ a {
 
 @media (max-width: 770px) {
   .centered-div {
-    width: 98%;
+    width: 95%;
   }
+}
+
+input {
+  padding: 8px 10px;
+}
+
+.btn-primary {
+  border: 1px solid #004a5f;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #00c8ff;
+  color: #004a5f;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #0196c0;
+  }
+}
+
+.input-error p {
+  color: #d10101;
+  font-size: 14px;
 }

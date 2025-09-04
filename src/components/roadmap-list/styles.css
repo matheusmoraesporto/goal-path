@@ -9,20 +9,9 @@
     margin-bottom: 8px;
 }
 
-.btn-go-to-create-roadmap {
-    padding: 10px;
-    border: 1px solid;
-    border-radius: 5px;
-
-    &:hover {
-        cursor: pointer;
-        background-color: red;
-    }
-}
-
 .roadmap-list li {
     padding: 12px 10px;
-    border-bottom: solid 1px black;
+    border-bottom: solid 1px #00303d;
     list-style-type: none;
 
     &:hover {

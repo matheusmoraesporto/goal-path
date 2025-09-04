@@ -12,7 +12,7 @@ export default function RoadmapList() {
         <h2>Road map list</h2>
         <Link href="/roadmap/create">
           {/* TODO: Add "new icon" (+) */}
-          <span className="btn-go-to-create-roadmap">Criar novo road map</span>
+          <span className="btn-primary">Criar novo road map</span>
         </Link>
       </div>
       <ul className="roadmap-list">

@@ -72,7 +72,6 @@ export default function Page() {
         <div className="input-form-aggregator">
           <input type="text" name="studyGoal" />
         </div>
-        {/* <button onClick={onClickAddExperience}>Adicionar experiência</button> */}
         <button className="btn-add-xp" onClick={onClickAddExperience}>
           Adicionar experiência
         </button>
@@ -156,7 +155,7 @@ export default function Page() {
         </div>
       </div>
 
-      <button className="btn-create-roadmap" type="submit">
+      <button className="btn-primary" type="submit">
         Create Road Map
       </button>
     </form>
