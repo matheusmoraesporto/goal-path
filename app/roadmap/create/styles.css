@@ -1,0 +1,31 @@
+/* TODO: Criar uma classe para esse form, pois ele está aplicando borda no botão de signout */
+form {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid red;
+    /* TODO: Change border */
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.input-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.input-form-aggregator {}
+
+.btn-add-xp {
+    width: 160px;
+}
+
+.input-form-inline-field {
+    display: flex;
+    gap: 2px;
+}
+
+.btn-create-roadmap {
+    width: 160px;
+}

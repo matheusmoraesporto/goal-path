@@ -1,0 +1,21 @@
+.login-page-container {
+  width: 60% !important;
+  margin-top: 25px;
+}
+
+@media (max-width: 770px) {
+  .login-page-container {
+    width: 95% !important;
+  }
+}
+
+.input-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.btn-submit-login {
+  width: 100%;
+  margin-top: 10px;
+}
