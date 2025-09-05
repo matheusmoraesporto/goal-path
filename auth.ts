@@ -27,9 +27,6 @@ export const { auth, signIn, signOut } = NextAuth({
           .object({ name: z.string(), password: z.string() })
           .safeParse(credentials);
 
-        console.log("Parsed Credentials:", parsedCredentials);
-        console.log("Parsed Credentials error:", parsedCredentials.error);
-
         if (parsedCredentials.success) {
           const { name, password } = parsedCredentials.data;
           const user = await getUser(name);
