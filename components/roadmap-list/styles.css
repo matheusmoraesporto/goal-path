@@ -18,7 +18,7 @@
     margin-top: 15px;
 }
 
-.roadmap-list li {
+.roadmap-list a li {
     padding: 12px 10px;
     border-bottom: solid 1px #00303d;
     list-style-type: none;
@@ -28,7 +28,7 @@
     }
 }
 
-.roadmap-list li:nth-child(odd) {
+.roadmap-list a:nth-child(odd) li {
     background-color: #cbefff;
     
     &:hover {
@@ -36,7 +36,7 @@
     }
 }
 
-.roadmap-list li:nth-child(even) {
+.roadmap-list a:nth-child(even) li {
     background-color: #b2e4fb;
 
     &:hover {

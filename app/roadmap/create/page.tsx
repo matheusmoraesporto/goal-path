@@ -3,6 +3,7 @@
 import { useState } from "react";
 import "./styles.css";
 import { Experience } from "@/app/types/user-preferences";
+import Link from "next/link";
 
 export default function Page() {
   const [experiences, setExperiences] = useState<Experience[]>([]);
@@ -161,9 +162,9 @@ export default function Page() {
           Gerar o plano de estudos
         </button>
 
-        <button className="btn-secondary" type="submit">
+        <Link className="btn-secondary" href="/">
           Cancelar
-        </button>
+        </Link>
       </div>
     </form>
   );

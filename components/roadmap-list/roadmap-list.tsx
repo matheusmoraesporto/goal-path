@@ -17,11 +17,11 @@ export default function RoadmapList() {
       </div>
       <ul className="roadmap-list">
         {roadMaps.map((r) => (
-          <li key={r.id}>
-            <Link key={r.id} href={`/roadmap/${r.id}`}>
+          <Link key={r.id} href={`/roadmap/${r.id}`}>
+            <li className="abc" key={r.id}>
               {r.techGoal}
-            </Link>
-          </li>
+            </li>
+          </Link>
         ))}
       </ul>
     </div>
