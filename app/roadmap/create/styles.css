@@ -1,11 +1,10 @@
-/* TODO: Criar uma classe para esse form, pois ele está aplicando borda no botão de signout */
-form {
+.new-roadmap-form {
     display: flex;
     flex-direction: column;
-    border: 1px solid red;
+    border: 1px solid #004a5f;
     /* TODO: Change border */
     border-radius: 10px;
-    margin: 10px;
+    margin-top: 10px;
     padding: 10px;
 }
 
@@ -26,6 +25,14 @@ form {
     gap: 2px;
 }
 
-.btn-create-roadmap {
-    width: 160px;
+.form-actions {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+@media (max-width: 770px) {
+    .form-actions {
+        justify-content: space-between;
+    }
 }

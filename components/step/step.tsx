@@ -27,7 +27,7 @@ export default function StepTile({
             height: lastChild ? "100%" : "120%",
             backgroundColor: isCompleted
               ? "rgba(46, 235, 166, 1)"
-              : "rgba(39, 140, 255, 1)",
+              : "#004a5f",
           }}
         >
           {/* TODO: Trocar por um ícone */}
@@ -36,7 +36,7 @@ export default function StepTile({
             style={{
               backgroundColor: isCompleted
                 ? "rgba(46, 235, 166, 1)"
-                : "rgba(39, 140, 255, 1)",
+                : "#004a5f",
             }}
           >
             {isCompleted ? "V" : "..."}

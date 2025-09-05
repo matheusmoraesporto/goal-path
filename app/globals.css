@@ -74,12 +74,12 @@ input {
   border: 1px solid #004a5f;
   border-radius: 5px;
   padding: 10px;
-  background-color: #00c8ff;
+  background-color: #ffffff;
   color: #004a5f;
   
   &:hover {
     cursor: pointer;
-    background-color: #003344;
+    background-color: #004a5f;
     color: #ffffff;
   }
 }

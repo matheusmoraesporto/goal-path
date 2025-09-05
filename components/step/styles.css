@@ -5,7 +5,6 @@
 }
 
 .step-timeline {
-    /* background-color: red; */
     width: 30px;
     display: flex;
     justify-content: center;
@@ -32,8 +31,7 @@
 
 .step-card-container {
     padding: 10px;
-    /* TODO: Change color */
-    border: 1px solid red;
+    border: 1px solid #004a5f;
     border-radius: 5px;
     width: 100%;
 }

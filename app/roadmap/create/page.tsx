@@ -23,7 +23,7 @@ export default function Page() {
   };
 
   return (
-    <form className="centered-div">
+    <form className="new-roadmap-form centered-div">
       <div className="input-form">
         <label>Nome do plano de estudos:</label>
         <input type="text" name="name" />
@@ -155,9 +155,16 @@ export default function Page() {
         </div>
       </div>
 
-      <button className="btn-primary" type="submit">
-        Create Road Map
-      </button>
+      <div className="form-actions">
+        {/* TODO: Adicionar ícone de IA */}
+        <button className="btn-primary" type="submit">
+          Gerar o plano de estudos
+        </button>
+
+        <button className="btn-secondary" type="submit">
+          Cancelar
+        </button>
+      </div>
     </form>
   );
 }

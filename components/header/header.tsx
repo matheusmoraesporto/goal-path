@@ -13,7 +13,7 @@ export default function Header() {
             await signOut({ redirectTo: "/login" });
           }}
         >
-          <button className="btn-secondary" type="submit">
+          <button className="btn-primary" type="submit">
             {/* <PowerIcon className="w-6" /> */}
             <div>Sign Out</div>
           </button>
