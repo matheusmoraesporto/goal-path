@@ -10,7 +10,7 @@ export default function RoadmapList() {
     <div className="roadmap-list-container centered-div">
       <div className="roadmap-list-header">
         <h2>Road map list</h2>
-        <Link href="/roadmap/create">
+        <Link href="/roadmap/preferences">
           {/* TODO: Add "new icon" (+) */}
           <span className="btn-primary">Criar novo road map</span>
         </Link>

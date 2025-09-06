@@ -2,7 +2,7 @@ export type DeveloperLevel =
   | "beginner"
   | "junior"
   | "intermediate"
-  | "advanced";
+  | "senior";
 
 export type Metric = "years" | "months";
 

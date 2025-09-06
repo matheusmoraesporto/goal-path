@@ -1,12 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useActionState, useState } from "react";
 import "./styles.css";
 import { Experience } from "@/app/types/user-preferences";
 import Link from "next/link";
+import { createRoadmap, FormRoadmapState } from "@/service/actions/roadmap";
+import { developerLevels } from "./static";
 
-export default function Page() {
+export default function RoadmapForm() {
   const [experiences, setExperiences] = useState<Experience[]>([]);
+  const initialState: FormRoadmapState = {
+    message: null,
+    errors: {},
+    values: {},
+  };
+  const [state, formAction, isPending] = useActionState(
+    createRoadmap, // TODO: Ignorar o eror por enquanto, quando aidiconar o redirect irá sumir
+    initialState
+  );
 
   const onClickAddExperience = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -24,21 +35,46 @@ export default function Page() {
   };
 
   return (
-    <form className="new-roadmap-form centered-div">
+    <form className="new-roadmap-form centered-div" action={formAction}>
       <div className="input-form">
-        <label>Nome do plano de estudos:</label>
-        <input type="text" name="name" />
+        <label htmlFor="roadmapName">Nome do plano de estudos:</label>
+        <input
+          id="roadmapName"
+          name="roadmapName"
+          type="text"
+          required
+          defaultValue={state?.values?.roadmapName ?? ""}
+        />
       </div>
 
       <div className="input-form">
-        <label>Em qual nível você se vê, como desenvolvedor?:</label>
-        {/* TODO: Trocar para select */}
-        <input type="text" name="name" />
+        <label htmlFor="developerLevel">Em qual nível você se vê, como desenvolvedor?</label>
+        <select
+          id="developerLevel"
+          name="developerLevel"
+          required
+          defaultValue={state?.values?.developerLevel ?? ""}
+        >
+          <option value="" disabled>
+            Selecione um nível
+          </option>
+          {developerLevels.map((devLvl) => (
+            <option key={devLvl.id} value={devLvl.id}>
+              {devLvl.name}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div className="input-form">
-        <label>Qual tecnologia você pretende estudar?</label>
-        <input type="text" name="studyGoal" />
+        <label htmlFor="techGoal">Qual tecnologia você pretende estudar?</label>
+        <input
+          id="techGoal"
+          type="text"
+          name="techGoal"
+          required
+          defaultValue={state?.values?.techGoal ?? ""}
+        />
       </div>
 
       <div className="input-form">
@@ -113,7 +149,7 @@ export default function Page() {
           <label> Texto</label>
         </div>
         <div>
-          <input type="checkbox" name="doc" />
+          <input type="checkbox" name="document" />
           <label> Documentações</label>
         </div>
         <div>

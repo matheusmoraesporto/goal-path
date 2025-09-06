@@ -7,9 +7,9 @@ const translateDeveloperLevel = (level: DeveloperLevel) => {
     case "junior":
       return "Júnior";
     case "intermediate":
-      return "Intermediário";
-    case "advanced":
-      return "Avançado";
+      return "Pleno";
+    case "senior":
+      return "Sênior";
     default:
       return level;
   }

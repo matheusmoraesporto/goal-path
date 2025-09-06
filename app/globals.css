@@ -52,7 +52,7 @@ a {
   }
 }
 
-input {
+input, select {
   padding: 8px 10px;
 }
 
@@ -87,4 +87,16 @@ input {
 .input-error p {
   color: #d10101;
   font-size: 14px;
+}
+
+label:has(+ input:required)::after,
+label:has(+ select:required)::after {
+  content: " *";
+  color: #d10101;;
+}
+
+label:has(+ input:optional)::after,
+label:has(+ select:required)::after {
+  content: " (opcional)";
+  color: #5b9aab;
 }
