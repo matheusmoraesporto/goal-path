@@ -30,7 +30,6 @@ export type FormRoadmapState = {
   errors?: {
     roadmapName?: string[];
     developerLevel?: string[];
-    techGoal?: string[];
     roadmapDurationAmount?: string[];
     roadmapDurationMetric?: string[];
     studyFrequencyAmount?: string[];
@@ -139,7 +138,16 @@ export async function createRoadmap(
 
   // TODO: Remover isso, e só pra testar
   return {
-    // errors: validatedFields.error.flatten().fieldErrors,
+    errors: {
+      roadmapName: ["Erro de teste no nome do roadmap"],
+      developerLevel: ["Erro de teste no nome do roadmap"],
+      roadmapDurationAmount: ["Erro de teste no nome do roadmap"],
+      roadmapDurationMetric: ["Erro de teste no nome do roadmap"],
+      studyFrequencyMetric: ["Erro de teste no nome do roadmap"],
+      studyFrequencyAmount: ["Erro de teste no nome do roadmap"],
+      payment: ["Erro de teste no nome do roadmap"],
+      language: ["Erro de teste no nome do roadmap"],
+    },
     values: {
       roadmapName: formData.get("roadmapName") as string,
       developerLevel: formData.get("developerLevel") as DeveloperLevel,

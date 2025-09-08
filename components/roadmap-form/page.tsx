@@ -69,6 +69,12 @@ export default function RoadmapForm() {
           defaultValue={state?.values?.roadmapName ?? ""}
         />
       </div>
+      <div className="input-error" aria-live="polite" aria-atomic="true">
+        {state.errors?.roadmapName &&
+          state.errors.roadmapName.map((error: string) => (
+            <p key={error}>{error}</p>
+          ))}
+      </div>
 
       <div className="input-form">
         <label htmlFor="developerLevel">
@@ -89,6 +95,12 @@ export default function RoadmapForm() {
             </option>
           ))}
         </select>
+      </div>
+      <div className="input-error" aria-live="polite" aria-atomic="true">
+        {state.errors?.developerLevel &&
+          state.errors.developerLevel.map((error: string) => (
+            <p key={error}>{error}</p>
+          ))}
       </div>
 
       <div className="input-form">
@@ -212,6 +224,18 @@ export default function RoadmapForm() {
           </select>
         </div>
       </div>
+      <div className="input-error" aria-live="polite" aria-atomic="true">
+        {state.errors?.roadmapDurationAmount &&
+          state.errors.roadmapDurationAmount.map((error: string) => (
+            <p key={error}>{error}</p>
+          ))}
+      </div>
+      <div className="input-error" aria-live="polite" aria-atomic="true">
+        {state.errors?.roadmapDurationMetric &&
+          state.errors.roadmapDurationMetric.map((error: string) => (
+            <p key={error}>{error}</p>
+          ))}
+      </div>
 
       <div className="input-form">
         <label>
@@ -242,6 +266,18 @@ export default function RoadmapForm() {
             ))}
           </select>
         </div>
+      </div>
+      <div className="input-error" aria-live="polite" aria-atomic="true">
+        {state.errors?.studyFrequencyAmount &&
+          state.errors.studyFrequencyAmount.map((error: string) => (
+            <p key={error}>{error}</p>
+          ))}
+      </div>
+      <div className="input-error" aria-live="polite" aria-atomic="true">
+        {state.errors?.studyFrequencyMetric &&
+          state.errors.studyFrequencyMetric.map((error: string) => (
+            <p key={error}>{error}</p>
+          ))}
       </div>
 
       <div className="input-form">
@@ -317,6 +353,12 @@ export default function RoadmapForm() {
           <label> Ambos</label>
         </div>
       </div>
+      <div className="input-error" aria-live="polite" aria-atomic="true">
+        {state.errors?.payment &&
+          state.errors.payment.map((error: string) => (
+            <p key={error}>{error}</p>
+          ))}
+      </div>
 
       <div className="input-form">
         <label>
@@ -352,6 +394,12 @@ export default function RoadmapForm() {
           />
           <label> Ambos</label>
         </div>
+      </div>
+      <div className="input-error" aria-live="polite" aria-atomic="true">
+        {state.errors?.language &&
+          state.errors.language.map((error: string) => (
+            <p key={error}>{error}</p>
+          ))}
       </div>
 
       <div className="form-actions">
