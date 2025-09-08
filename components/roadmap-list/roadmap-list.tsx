@@ -4,6 +4,7 @@ import "./styles.css";
 import Link from "next/link";
 // TODO: Replace with actual data fetching logic
 import roadMaps from "./mocks";
+import { FiPlus } from "react-icons/fi";
 
 export default function RoadmapList() {
   return (
@@ -12,7 +13,10 @@ export default function RoadmapList() {
         <h2>Road map list</h2>
         <Link href="/roadmap/preferences">
           {/* TODO: Add "new icon" (+) */}
-          <span className="btn-primary">Criar novo road map</span>
+          <span className="btn-primary">
+            <FiPlus />
+            Criar novo road map
+          </span>
         </Link>
       </div>
       <ul className="roadmap-list">

@@ -60,13 +60,18 @@ input, select {
   border: 1px solid #004a5f;
   border-radius: 5px;
   padding: 10px;
-  background-color: #00c8ff;
-  color: #004a5f;
+  background-color: #004a5f;
+  color: #ffffff;
+  /* Config for icons */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
 
   &:hover {
     cursor: pointer;
-    background-color: #004a5f;
-    color: #ffffff;
+    color: #004a5f;
+    background-color: #66d4f3;
   }
 }
 
@@ -76,6 +81,11 @@ input, select {
   padding: 10px;
   background-color: #ffffff;
   color: #004a5f;
+  /* Config for icons */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
   
   &:hover {
     cursor: pointer;
@@ -87,16 +97,4 @@ input, select {
 .input-error p {
   color: #d10101;
   font-size: 14px;
-}
-
-label:has(+ input:required)::after,
-label:has(+ select:required)::after {
-  content: " *";
-  color: #d10101;;
-}
-
-label:has(+ input:optional)::after,
-label:has(+ select:required)::after {
-  content: " (opcional)";
-  color: #5b9aab;
 }

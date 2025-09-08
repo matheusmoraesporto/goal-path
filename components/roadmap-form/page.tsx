@@ -2,12 +2,25 @@
 
 import { useActionState, useState } from "react";
 import "./styles.css";
-import { Experience } from "@/app/types/user-preferences";
+import {
+  Experience,
+  Metric,
+  MetricDuration,
+} from "@/app/types/user-preferences";
 import Link from "next/link";
 import { createRoadmap, FormRoadmapState } from "@/service/actions/roadmap";
-import { developerLevels } from "./static";
+import { developerLevels, frequencyMetrics, metrics } from "./static";
+import { BsStars } from "react-icons/bs";
+import { FiPlus } from "react-icons/fi";
+import { FaRegTrashAlt } from "react-icons/fa";
 
 export default function RoadmapForm() {
+  const [newTech, setNewTech] = useState("");
+  const [newTechAmountDuration, setNewTechAmountDuration] = useState(0);
+  const [newTechMetricDuration, setNewTechMetricDuration] = useState<
+    MetricDuration | undefined
+  >(undefined);
+
   const [experiences, setExperiences] = useState<Experience[]>([]);
   const initialState: FormRoadmapState = {
     message: null,
@@ -19,19 +32,29 @@ export default function RoadmapForm() {
     initialState
   );
 
-  const onClickAddExperience = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    console.log("Im clicked");
+  const onClickAddExperience = () => {
+    if (
+      !newTech ||
+      !newTechAmountDuration ||
+      newTechAmountDuration < 1 ||
+      !newTechMetricDuration
+    ) {
+      return;
+    }
 
-    // TODO: Mudar para pegar os valores dos inputs
     const newExperience: Experience = {
-      tech: "React",
+      tech: newTech,
       metricDuration: {
-        metric: "years",
-        amount: 2,
+        metric: newTechMetricDuration as unknown as Metric,
+        amount: newTechAmountDuration,
       },
     };
     setExperiences([...experiences, newExperience]);
+  };
+
+  const removeExperience = (index: number) => {
+    const newExperiences = experiences.filter((_, i) => i !== index);
+    setExperiences(newExperiences);
   };
 
   return (
@@ -48,7 +71,9 @@ export default function RoadmapForm() {
       </div>
 
       <div className="input-form">
-        <label htmlFor="developerLevel">Em qual nível você se vê, como desenvolvedor?</label>
+        <label htmlFor="developerLevel">
+          Em qual nível você se vê, como desenvolvedor?
+        </label>
         <select
           id="developerLevel"
           name="developerLevel"
@@ -78,40 +103,85 @@ export default function RoadmapForm() {
       </div>
 
       <div className="input-form">
-        {/* 
-          TODO: Aqui mudar para que seja possível adicionar várias tecnologias
-          e para cada uma delas, necessário informar:
-            - a tecnologia em si. Ex: React
-            - tempo de experiência. Ex: dois inputs, um númeor para quantidade e outro para anos ou meses
-        */}
         <label>Quais tecnologias você possui experiência?</label>
         {experiences.map(({ tech, metricDuration }, index) => (
           <div key={index} className="experience-container">
-            <span>{tech}</span>
             <span>
-              {metricDuration.amount} {metricDuration.metric}
+              {tech} - {metricDuration.amount} {metricDuration.metric}
             </span>
             <button
-              className="btn-remove-xp"
+              className="btn-secondary"
               type="button"
-              // TODO: Mover para uma função própria
-              onClick={() => {
-                const newExperiences = experiences.filter(
-                  (_, i) => i !== index
-                );
-                setExperiences(newExperiences);
-              }}
+              onClick={() => removeExperience(index)}
             >
-              Remover
+              <FaRegTrashAlt />
             </button>
+
+            {/* Hidden inputs para mandar no submit */}
+            <input
+              type="hidden"
+              name={`experiences[${index}][tech]`}
+              value={tech}
+            />
+            <input
+              type="hidden"
+              name={`experiences[${index}][amount]`}
+              value={metricDuration.amount}
+            />
+            <input
+              type="hidden"
+              name={`experiences[${index}][metric]`}
+              value={metricDuration.metric}
+            />
           </div>
         ))}
         <div className="input-form-aggregator">
-          <input type="text" name="studyGoal" />
+          <input
+            className="aggregator-item"
+            type="text"
+            name="tech"
+            placeholder="Informe a tecnologia"
+            value={newTech}
+            onChange={(e) => setNewTech(e.target.value)}
+          />
+          <input
+            className="aggregator-item"
+            type="number"
+            name="amount"
+            placeholder="Informe quanto tempo você tem conhecimento"
+            value={newTechAmountDuration}
+            onChange={(e) => setNewTechAmountDuration(Number(e.target.value))}
+          />
+          <select
+            className="aggregator-item"
+            name="metric"
+            value={
+              typeof newTechMetricDuration === "string"
+                ? newTechMetricDuration
+                : newTechMetricDuration
+                ? String(newTechMetricDuration)
+                : ""
+            }
+            onChange={(e) =>
+              setNewTechMetricDuration(
+                e.target.value as unknown as MetricDuration
+              )
+            }
+          >
+            <option value="" disabled>
+              Selecione um período
+            </option>
+            {metrics.map((m) => (
+              <option key={m.id} value={m.id}>
+                {m.name}
+              </option>
+            ))}
+          </select>
+          <span className="btn-secondary" onClick={onClickAddExperience}>
+            <FiPlus />
+            Adicionar
+          </span>
         </div>
-        <button className="btn-add-xp" onClick={onClickAddExperience}>
-          Adicionar experiência
-        </button>
       </div>
 
       <div className="input-form">
@@ -119,41 +189,97 @@ export default function RoadmapForm() {
           Qual o tempo total você deseja investir neste plano de estudos?
         </label>
         <div className="input-form-inline-field">
-          <input type="number" name="studyGoal" min={1} />
-          <input type="text" name="studyGoal" />
+          <input
+            id="roadmapDurationAmount"
+            type="number"
+            name="roadmapDurationAmount"
+            min={1}
+            defaultValue={state?.values?.roadmapDurationAmount ?? 1}
+          />
+          <select
+            id="roadmapDurationMetric"
+            name="roadmapDurationMetric"
+            defaultValue={state?.values?.roadmapDurationMetric}
+          >
+            <option value="" disabled>
+              Selecione um período
+            </option>
+            {metrics.map((m) => (
+              <option key={m.id} value={m.id}>
+                {m.name}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
 
       <div className="input-form">
-        {/* TODO: Exemplo: 1 vez por semana */}
         <label>
           Com qual frequência você pretende acessar os conteúdos que serão
           sugeridos?
         </label>
         <div>
-          <input type="number" name="studyGoal" min={1} />
+          <input
+            id="studyFrequencyAmount"
+            type="number"
+            name="studyFrequencyAmount"
+            min={1}
+            defaultValue={state?.values?.studyFrequencyAmount ?? 1}
+          />
           <span> vez(es) por </span>
-          {/* TODO: Mudar para um select field */}
-          <input type="text" name="studyGoal" />
+          <select
+            id="studyFrequencyMetric"
+            name="studyFrequencyMetric"
+            defaultValue={state?.values?.studyFrequencyMetric}
+          >
+            <option value="" disabled>
+              Selecione um período
+            </option>
+            {frequencyMetrics.map((fm) => (
+              <option key={fm.id} value={fm.id}>
+                {fm.name}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
 
       <div className="input-form">
         <label>Quais tipos de conteúdo você prefere para estudar?</label>
         <div>
-          <input type="checkbox" name="audio" />
+          <input
+            id="audio"
+            type="checkbox"
+            name="audio"
+            defaultChecked={state?.values?.audio}
+          />
           <label> Áudio</label>
         </div>
         <div>
-          <input type="checkbox" name="text" />
+          <input
+            id="text"
+            type="checkbox"
+            name="text"
+            defaultChecked={state?.values?.text}
+          />
           <label> Texto</label>
         </div>
         <div>
-          <input type="checkbox" name="document" />
+          <input
+            id="document"
+            type="checkbox"
+            name="document"
+            defaultChecked={state?.values?.document}
+          />
           <label> Documentações</label>
         </div>
         <div>
-          <input type="checkbox" name="video" />
+          <input
+            id="video"
+            type="checkbox"
+            name="video"
+            defaultChecked={state?.values?.video}
+          />
           <label> Vídeos</label>
         </div>
       </div>
@@ -161,15 +287,33 @@ export default function RoadmapForm() {
       <div className="input-form">
         <label>Você tem preferência por conteúdo pago ou gratuito?</label>
         <div>
-          <input type="radio" name="payment" id="free" />
+          <input
+            type="radio"
+            name="payment"
+            id="free"
+            value="free"
+            defaultChecked={state?.values?.payment === "free"}
+          />
           <label> Gratuito</label>
         </div>
         <div>
-          <input type="radio" name="payment" id="paid" />
+          <input
+            type="radio"
+            name="payment"
+            id="paid"
+            value="paid"
+            defaultChecked={state?.values?.payment === "paid"}
+          />
           <label> Pago</label>
         </div>
         <div>
-          <input type="radio" name="payment" id="both" />
+          <input
+            type="radio"
+            name="payment"
+            id="both"
+            value="both"
+            defaultChecked={state?.values?.payment === "both"}
+          />
           <label> Ambos</label>
         </div>
       </div>
@@ -179,22 +323,40 @@ export default function RoadmapForm() {
           Você tem preferência por idioma do conteúdo que será sugerido?
         </label>
         <div>
-          <input type="radio" name="language" id="english" />
+          <input
+            type="radio"
+            name="language"
+            id="english"
+            value="english"
+            defaultChecked={state?.values?.language === "english"}
+          />
           <label> Inglês</label>
         </div>
         <div>
-          <input type="radio" name="language" id="portuguese" />
+          <input
+            type="radio"
+            name="language"
+            id="portuguese"
+            value="portuguese"
+            defaultChecked={state?.values?.language === "portuguese"}
+          />
           <label> Português</label>
         </div>
         <div>
-          <input type="radio" name="language" id="both" />
+          <input
+            type="radio"
+            name="language"
+            id="both"
+            value="both"
+            defaultChecked={state?.values?.language === "both"}
+          />
           <label> Ambos</label>
         </div>
       </div>
 
       <div className="form-actions">
-        {/* TODO: Adicionar ícone de IA */}
         <button className="btn-primary" type="submit">
+          <BsStars />
           Gerar o plano de estudos
         </button>
 

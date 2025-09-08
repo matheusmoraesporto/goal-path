@@ -1,10 +1,9 @@
 header {
-    background-color: #00c8ff;
+    background-color: #66d4f3;
     color: #004a5f;
 }
 
 .header-container {
-    padding: 20px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -12,4 +11,23 @@ header {
 
 .header-container h1 {
     font-size: 26px;
+}
+
+.btn-signout {
+  border: 1px solid #004a5f;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #66d4f3;
+  color: #004a5f;
+  /* Config for icons */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  
+  &:hover {
+    cursor: pointer;
+    background-color: #004a5f;
+    color: #ffffff;
+  }
 }

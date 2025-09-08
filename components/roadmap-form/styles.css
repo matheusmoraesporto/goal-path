@@ -4,6 +4,7 @@
     border: 1px solid #004a5f;
     border-radius: 10px;
     margin-top: 10px;
+    margin-bottom: 10px;
     padding: 0 10px 10px 10px;
 }
 
@@ -13,15 +14,35 @@
     margin-top: 10px;
 }
 
-.input-form-aggregator {}
+.input-form-aggregator {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    margin-top: 10px;
+    width: 100%;
+}
 
-.btn-add-xp {
-    width: 160px;
+.aggregator-item {
+    width: 30%;
+}
+
+.experience-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.experience-container span {
+    padding: 8px 10px;
+    border: 1px solid #004a5f;
+    border-radius: 5px;
 }
 
 .input-form-inline-field {
     display: flex;
-    gap: 2px;
+    gap: 5px;
 }
 
 .form-actions {
