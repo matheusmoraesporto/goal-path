@@ -246,7 +246,7 @@ export default function RoadmapForm() {
 
       <div className="input-form">
         <label>Quais tipos de conteúdo você prefere para estudar?</label>
-        <div>
+        <div className="input-check-form">
           <input
             id="audio"
             type="checkbox"
@@ -255,7 +255,7 @@ export default function RoadmapForm() {
           />
           <label> Áudio</label>
         </div>
-        <div>
+        <div className="input-check-form">
           <input
             id="text"
             type="checkbox"
@@ -264,7 +264,7 @@ export default function RoadmapForm() {
           />
           <label> Texto</label>
         </div>
-        <div>
+        <div className="input-check-form">
           <input
             id="document"
             type="checkbox"
@@ -273,7 +273,7 @@ export default function RoadmapForm() {
           />
           <label> Documentações</label>
         </div>
-        <div>
+        <div className="input-check-form">
           <input
             id="video"
             type="checkbox"
@@ -286,7 +286,7 @@ export default function RoadmapForm() {
 
       <div className="input-form">
         <label>Você tem preferência por conteúdo pago ou gratuito?</label>
-        <div>
+        <div className="input-check-form">
           <input
             type="radio"
             name="payment"
@@ -296,7 +296,7 @@ export default function RoadmapForm() {
           />
           <label> Gratuito</label>
         </div>
-        <div>
+        <div className="input-check-form">
           <input
             type="radio"
             name="payment"
@@ -306,7 +306,7 @@ export default function RoadmapForm() {
           />
           <label> Pago</label>
         </div>
-        <div>
+        <div className="input-check-form">
           <input
             type="radio"
             name="payment"
@@ -322,7 +322,7 @@ export default function RoadmapForm() {
         <label>
           Você tem preferência por idioma do conteúdo que será sugerido?
         </label>
-        <div>
+        <div className="input-check-form">
           <input
             type="radio"
             name="language"
@@ -332,7 +332,7 @@ export default function RoadmapForm() {
           />
           <label> Inglês</label>
         </div>
-        <div>
+        <div className="input-check-form">
           <input
             type="radio"
             name="language"
@@ -342,7 +342,7 @@ export default function RoadmapForm() {
           />
           <label> Português</label>
         </div>
-        <div>
+        <div className="input-check-form">
           <input
             type="radio"
             name="language"

@@ -52,7 +52,8 @@ a {
   }
 }
 
-input, select {
+input,
+select {
   padding: 8px 10px;
 }
 
@@ -86,7 +87,7 @@ input, select {
   align-items: center;
   justify-content: center;
   gap: 5px;
-  
+
   &:hover {
     cursor: pointer;
     background-color: #004a5f;
@@ -97,4 +98,11 @@ input, select {
 .input-error p {
   color: #d10101;
   font-size: 14px;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #004a5f;
 }
