@@ -5,7 +5,10 @@ export const authConfig = {
     signIn: "/login",
   },
   callbacks: {
-    authorized({ auth }) {
+    authorized({ auth, request: { nextUrl } }) {
+      if (nextUrl.pathname.startsWith("/signup")) {
+        return true;
+      }
       return !!auth?.user;
     },
   },
