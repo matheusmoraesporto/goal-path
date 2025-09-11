@@ -1,14 +1,12 @@
 "use server";
 
+import { RoadMap } from "@/app/types/step";
 import { UserPreferences } from "@/app/types/user-preferences";
 import postgres from "postgres";
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
-async function saveRoadmap(
-  userUUID: string,
-  userPreferences: UserPreferences
-) {
+async function saveRoadmap(userUUID: string, userPreferences: UserPreferences) {
   const {
     roadmapName,
     developerLevel,
@@ -42,4 +40,21 @@ async function saveRoadmap(
   }
 }
 
-export { saveRoadmap };
+async function getRoadmapsByUser(userUUID: string) {
+  try {
+    const rows =
+      await sql`SELECT id, title FROM roadmaps WHERE user_id=${userUUID}`;
+    return rows.map(
+      (row) =>
+        ({
+          id: row.id,
+          roadmapName: row.title,
+        } as RoadMap)
+    );
+  } catch (error) {
+    console.error("Failed to fetch roadmaps:", error);
+    throw new Error("Failed to fetch roadmaps.");
+  }
+}
+
+export { saveRoadmap, getRoadmapsByUser };
