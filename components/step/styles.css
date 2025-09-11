@@ -1,7 +1,7 @@
 .step-container {
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    gap: 15px;
 }
 
 .step-timeline {
@@ -38,4 +38,20 @@
 
 .step-completed {
     text-decoration: line-through;
+}
+
+.step-progress-icon {
+    position: absolute;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+.step-progress-icon-done {
+    font-size: 28px;
+    color: #4BB543;
+}
+
+.step-progress-icon-progress {
+    font-size: 32px;
+    color: #004a5f;
 }

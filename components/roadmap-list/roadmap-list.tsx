@@ -12,7 +12,6 @@ export default function RoadmapList() {
       <div className="roadmap-list-header">
         <h2>Road map list</h2>
         <Link href="/roadmap/preferences">
-          {/* TODO: Add "new icon" (+) */}
           <span className="btn-primary">
             <FiPlus />
             Novo plano de estudos

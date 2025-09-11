@@ -27,8 +27,10 @@ export default function RoadmapForm() {
     errors: {},
     values: {},
   };
+
+  // TODO: Usar o "isPending" para implementar a tela de espera enquanto o roadmap está sendo gerado -- ver dialogs
   const [state, formAction, isPending] = useActionState(
-    createRoadmap, // TODO: Ignorar o eror por enquanto, quando aidiconar o redirect irá sumir
+    createRoadmap,
     initialState
   );
 

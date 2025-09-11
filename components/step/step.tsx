@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import "./styles.css";
+import { FaCheckCircle } from "react-icons/fa";
+import { RiProgress2Fill } from "react-icons/ri";
 
 export default function StepTile({
   name,
@@ -25,26 +27,17 @@ export default function StepTile({
           className="line"
           style={{
             height: lastChild ? "100%" : "120%",
-            backgroundColor: isCompleted
-              ? "#17c52bff"
-              : "#004a5f",
+            backgroundColor: isCompleted ? "#17c52bff" : "#004a5f",
           }}
         >
-          {/* TODO: Trocar por um ícone */}
-          <p
-            className="status"
-            style={{
-              backgroundColor: isCompleted
-                ? "#17c52bff"
-                : "#004a5f",
-            }}
-          >
-            {isCompleted ? "V" : "..."}
-          </p>
+          {isCompleted ? (
+            <FaCheckCircle className="step-progress-icon step-progress-icon-done" />
+          ) : (
+            <RiProgress2Fill className="step-progress-icon step-progress-icon-progress" />
+          )}
         </div>
       </div>
       <div className="step-card-container">
-        {/* TODO: Adicionar um ícone de "Em andamento" ou "Completo" */}
         <h3>{name}</h3>
         <p>Lorem ipsum</p>
       </div>
