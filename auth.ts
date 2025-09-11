@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import postgres from "postgres";
 import z from "zod";
 import { authConfig } from "./auth.config";
@@ -33,13 +33,29 @@ export const { auth, signIn, signOut } = NextAuth({
           if (!user) return null;
 
           const passwordsMatch = await bcrypt.compare(password, user.password);
-          if (passwordsMatch) return user;
+          if (passwordsMatch) {
+            return {
+              id: user.id.toString(),
+              name: user.name,
+            };
+          }
         }
 
         console.log("Invalid credentials");
         return null;
       },
-      credentials: {}
+      credentials: {},
     }),
   ],
+  callbacks: {
+    async session({ session, token }) {
+      console.log("Session callback", { session, token });
+      // Copia o uuid do token pra session.user
+      if (session.user) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (session.user as any).id = token.sub;
+      }
+      return session;
+    },
+  },
 });

@@ -2,10 +2,11 @@ const responseTemplate = `
 Gere um retorno no formato JSON com uma lista de passos no seguinte formato:
 [
 	{
-		"step-title": "Título da etapa",
-		"step-description": "Descrição da etapa",
-		"resource-title": "Título do recurso",
-		"resource-link": "Link do recurso"
+		"title": "Título da etapa sem número de ordenação",
+		"description": "Descrição da etapa",
+		"resourceTitle": "Título do recurso",
+		"resourceUrl": "Link do recurso",
+		"sort": 1
 	}
 ]
 `;

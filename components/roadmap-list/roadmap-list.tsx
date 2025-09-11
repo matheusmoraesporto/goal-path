@@ -15,7 +15,7 @@ export default function RoadmapList() {
           {/* TODO: Add "new icon" (+) */}
           <span className="btn-primary">
             <FiPlus />
-            Criar novo road map
+            Novo plano de estudos
           </span>
         </Link>
       </div>

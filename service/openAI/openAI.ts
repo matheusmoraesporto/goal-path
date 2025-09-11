@@ -11,13 +11,18 @@ const client = new OpenAI({
 
 const fetchDataFromOpenAI = async (userPreferences: UserPreferences) => {
   try {
+    // TODO: Remover console.logs
+    const input = `
+        ${generateUserPreferencesPrompt(userPreferences)}
+        ${responseTemplate}`;
+
+    console.log("OpenAI input", input);
     const res = await client.responses.create({
       model: "gpt-5-nano",
       tools: [{ type: "web_search" }],
-      input: `
-        ${generateUserPreferencesPrompt(userPreferences)}
-        ${responseTemplate}`,
-    });
+      input: input,
+    }, { timeout: 120000 });
+
     console.log("OpenAI response", res);
     console.log("OpenAI response output", res.output);
     console.log("OpenAI response output text", res.output_text);

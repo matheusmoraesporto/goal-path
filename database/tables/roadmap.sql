@@ -2,7 +2,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 CREATE TYPE developer_level_enum AS ENUM ('beginner', 'junior', 'intermediate', 'advanced');
 CREATE TYPE duration_metric_enum AS ENUM ('years', 'months');
-CREATE TYPE frequency_metric_enum AS ENUM ('daily', 'weekly', 'monthly');
+CREATE TYPE frequency_metric_enum AS ENUM ('weeks', 'months');
 CREATE TYPE payment_enum AS ENUM ('free', 'paid', 'both');
 CREATE TYPE language_preference_enum AS ENUM ('portuguese', 'english', 'both');
 CREATE TYPE metric AS ENUM ('years', 'months');
@@ -37,6 +37,9 @@ CREATE TABLE IF NOT EXISTS steps (
     id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
     roadmap_id UUID REFERENCES roadmaps(id) ON DELETE CASCADE,
     title VARCHAR(255) NOT NULL,
+    resource_title VARCHAR(255) NOT NULL,
+    resource_url VARCHAR(255) NOT NULL,
     description TEXT,
     is_completed BOOLEAN DEFAULT FALSE
+    sort INTEGER
 );
