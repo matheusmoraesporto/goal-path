@@ -11,11 +11,12 @@ import {
   UserPreferences,
 } from "@/app/types/user-preferences";
 import { redirect } from "next/navigation";
-import postgres from "postgres";
 import z from "zod";
 import { fetchDataFromOpenAI } from "../openAI/openAI";
 import { auth } from "@/auth";
 import { Step } from "@/app/types/step";
+import { saveRoadmap } from "../database/roadmap";
+import { saveSteps } from "../database/steps";
 
 export type FormRoadmapState = {
   values?: {
@@ -46,8 +47,6 @@ export type FormRoadmapState = {
   };
   message?: string | null;
 };
-
-const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
 const FormSchema = z.object({
   id: z.string(),
@@ -173,8 +172,8 @@ export async function createRoadmap(
     const steps = await generateStepsFromAI(userPreferences);
     const session = await auth();
     const userUUID = session?.user?.id;
-    const newRoadmapId = await saveRoadmapOnDB(userUUID!, userPreferences);
-    await saveStepsOnDB(newRoadmapId, steps);
+    const newRoadmapId = await saveRoadmap(userUUID!, userPreferences);
+    await saveSteps(newRoadmapId, steps);
 
     // TODO: Investigar pq está dando erro no redirect
     redirect(`/roadmap/${newRoadmapId}`);
@@ -184,66 +183,6 @@ export async function createRoadmap(
       ...prevState,
       message: "Erro ao criar plano de estudos. Tente novamente.",
     };
-  }
-}
-
-async function saveRoadmapOnDB(
-  userUUID: string,
-  userPreferences: UserPreferences
-) {
-  const {
-    roadmapName,
-    developerLevel,
-    techGoal,
-    roadmapDuration: {
-      amount: roadmapDurationAmount,
-      metric: roadmapDurationMetric,
-    },
-    frequency: { amount: studyFrequencyAmount, metric: studyFrequencyMetric },
-    audio,
-    text,
-    document,
-    video,
-    payment,
-    language,
-  } = userPreferences;
-
-  try {
-    const [createdRoadmap] =
-      await sql`INSERT INTO roadmaps (user_id, title, developer_level, tech_goal, duration_amount, duration_metric, frequency_amount, frequency_metric, audio_content, text_content, document_content, video_content, payment, language)
-      VALUES (${userUUID}, ${roadmapName}, ${developerLevel}, ${techGoal}, ${roadmapDurationAmount}, ${roadmapDurationMetric}, ${studyFrequencyAmount}, ${studyFrequencyMetric}, ${
-        audio ?? false
-      }, ${text ?? false}, ${document ?? false}, ${
-        video ?? false
-      }, ${payment}, ${language}) RETURNING id`;
-
-    return createdRoadmap.id;
-  } catch (error) {
-    console.error("Failed to save roadmap:", error);
-    throw new Error("Failed to save roadmap.");
-  }
-}
-
-async function saveStepsOnDB(roadmapId: number, steps: Step[]) {
-  try {
-    await Promise.all(
-      steps.map(
-        ({
-          title,
-          resourceTitle,
-          resourceUrl,
-          description,
-          sort,
-        }) => sql`
-        INSERT INTO steps (roadmap_id, title, resource_title, resource_url, description, is_completed, sort)
-        VALUES (${roadmapId}, ${title}, ${resourceTitle}, ${resourceUrl}, ${description}, ${false}, ${sort})
-        ON CONFLICT (id) DO NOTHING;
-      `
-      )
-    );
-  } catch (error) {
-    console.error("Failed to save steps:", error);
-    throw new Error("Failed to save steps.");
   }
 }
 

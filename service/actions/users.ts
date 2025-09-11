@@ -1,11 +1,10 @@
 "use server";
 
-import bcrypt from "bcryptjs";
 import { redirect } from "next/navigation";
-import postgres from "postgres";
 import { z } from "zod";
 import { signIn } from "../../auth";
 import { AuthError } from "next-auth";
+import { saveUser } from "../database/users";
 
 export type FormLoginState = {
   values?: {
@@ -26,8 +25,6 @@ export type FormUserState = {
   };
   message?: string | null;
 };
-
-const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
 const FormSchema = z.object({
   id: z.string(),
@@ -57,11 +54,9 @@ const createUser = async (prevState: FormUserState, formData: FormData) => {
   const { name, password } = validatedFields.data;
 
   try {
-    const hashedPassword = await bcrypt.hash(password, 10);
-    await sql`
-      INSERT INTO users (name, password) VALUES (${name}, ${hashedPassword})`;
+    await saveUser(name, password);
   } catch (error) {
-    console.log("erro ocorreu:", error);
+    console.log("Erro ao criar usuário:", error);
     return {
       ...prevState,
       message: "Erro ao criar usuário. Tente novamente.",
