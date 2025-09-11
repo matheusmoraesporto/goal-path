@@ -1,5 +1,5 @@
 const responseTemplate = `
-Gere um retorno no formato JSON com uma lista de passos no seguinte formato:
+Você deve gerar um retorno no formato JSON com uma lista de passos no seguinte formato, sem a possibilidade de uma saída diferente:
 [
 	{
 		"title": "Título da etapa sem número de ordenação",
