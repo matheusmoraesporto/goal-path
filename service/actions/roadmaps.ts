@@ -87,17 +87,7 @@ export async function createRoadmap(
   prevState: FormRoadmapState,
   formData: FormData
 ) {
-  // TODO: Remover esse log
-  for (const [key, value] of formData.entries()) {
-    console.log(key, value);
-  }
-
-  const session = await auth();
-  console.log("Authenticated user:", session?.user);
-
   const exp: Experience[] = parseExperiences(formData);
-  console.log("Parsed Experiences:", exp);
-
   const validatedFields = CreateRoadmap.safeParse({
     roadmapName: formData.get("roadmapName"),
     developerLevel: formData.get("developerLevel"),

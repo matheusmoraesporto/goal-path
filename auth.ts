@@ -49,7 +49,6 @@ export const { auth, signIn, signOut } = NextAuth({
   ],
   callbacks: {
     async session({ session, token }) {
-      console.log("Session callback", { session, token });
       // Copia o uuid do token pra session.user
       if (session.user) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
