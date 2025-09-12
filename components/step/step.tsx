@@ -1,25 +1,16 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import "./styles.css";
 import { FaCheckCircle } from "react-icons/fa";
 import { RiProgress2Fill } from "react-icons/ri";
+import { Step } from "@/app/types/step";
 
 export default function StepTile({
-  name,
-  status,
+  step,
   lastChild,
 }: {
-  name: string;
-  status: string;
+  step: Step;
   lastChild: boolean;
 }) {
-  const [isCompleted, setIsCompleted] = useState<boolean>(false);
-
-  useEffect(() => {
-    setIsCompleted(status === "completed");
-  }, [status]);
-
+  const { description, isCompleted, resourceTitle, resourceUrl, title } = step;
   return (
     <div className="step-container">
       <div className="step-timeline">
@@ -38,8 +29,14 @@ export default function StepTile({
         </div>
       </div>
       <div className="step-card-container">
-        <h3>{name}</h3>
-        <p>Lorem ipsum</p>
+        <h3>{title}</h3>
+        <p>{description}</p>
+        <span>
+          Accesse o conteúdo em:
+          <a href={resourceUrl} target="_blank">
+            {resourceTitle}
+          </a>
+        </span>
       </div>
     </div>
   );

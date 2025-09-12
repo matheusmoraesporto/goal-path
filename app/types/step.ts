@@ -1,7 +1,7 @@
 import { UserPreferences } from "./user-preferences"
 
 export interface Step {
-  name: string
+  id: string;
   roadmap_id: string
   isCompleted: boolean;
   title: string;

@@ -57,4 +57,14 @@ async function getRoadmapsByUser(userUUID: string) {
   }
 }
 
-export { saveRoadmap, getRoadmapsByUser };
+async function getRoadmapTitle(roadmapId: string): Promise<string> {
+  try {
+    const [row] = await sql`SELECT title FROM roadmaps WHERE id=${roadmapId}`;
+    return row ? row.title : "Roadmap";
+  } catch (error) {
+    console.error("Failed to fetch roadmap name:", error);
+    throw new Error("Failed to fetch roadmap name.");
+  }
+}
+
+export { getRoadmapsByUser, getRoadmapTitle, saveRoadmap };

@@ -65,6 +65,8 @@ const createUser = async (prevState: FormUserState, formData: FormData) => {
 
   console.log("Usuário criado com sucesso");
 
+  // TODO: Fazer login automático após cadastro
+
   redirect("/");
 };
 

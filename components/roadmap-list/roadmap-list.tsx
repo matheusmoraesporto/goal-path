@@ -1,27 +1,13 @@
-"use client";
-
 import "./styles.css";
 import Link from "next/link";
 import { FiPlus } from "react-icons/fi";
 import { getRoadmapsByUser } from "@/service/database/roadmap";
-import { useEffect, useState } from "react";
 import { RoadMap } from "@/app/types/step";
-import { useSession } from "next-auth/react";
+import { auth } from "@/auth";
 
-export default function RoadmapList() {
-  const [roadmaps, setRoadmaps] = useState<Array<RoadMap>>();
-  const { data: session } = useSession();
-  const userUUID = session?.user?.id;
-
-  const fetchRoadmaps = async (userUUID: string) => {
-    const response = await getRoadmapsByUser(userUUID);
-    setRoadmaps(response);
-  };
-
-  useEffect(() => {
-    if (userUUID)
-      fetchRoadmaps(userUUID || "")
-  }, [userUUID]);
+export default async function RoadmapList() {
+  const session = await auth();
+  const roadmaps = await getRoadmapsByUser(session?.user?.id || "");
 
   return (
     <div className="roadmap-list-container centered-div">
