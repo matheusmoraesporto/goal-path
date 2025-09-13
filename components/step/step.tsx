@@ -7,7 +7,6 @@ import { Step } from "@/app/types/step";
 import { updateStepStatus } from "@/service/actions/steps";
 import Modal, { ModalHandle } from "@/components/modal/modal";
 import { useRef } from "react";
-import { TailSpin } from "react-loader-spinner";
 
 export default function StepTile({
   step,
@@ -39,7 +38,7 @@ export default function StepTile({
             className="line"
             style={{
               height: lastChild ? "100%" : "120%",
-              backgroundColor: isCompleted ? "#17c52bff" : "#004a5f",
+              backgroundColor: isCompleted ? "#2f8828" : "#004a5f",
             }}
           >
             <span className="step-icon-container">
@@ -69,19 +68,11 @@ export default function StepTile({
         </div>
       </div>
 
-      <Modal ref={modalRef}>
-        <div className="modal-loading-container">
-          <TailSpin
-            visible={true}
-            height="80"
-            width="80"
-            color="#004a5f"
-            ariaLabel="tail-spin-loading"
-            radius="1"
-          />
-          <p>Atualizando o status da etapa...</p>
-        </div>
-      </Modal>
+      <Modal
+        ref={modalRef}
+        spinner="TailSpin"
+        text="Atualizando o status da etapa..."
+      />
     </>
   );
 }

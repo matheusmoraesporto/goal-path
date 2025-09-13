@@ -1,7 +1,10 @@
 "use client";
 
-import { forwardRef, ReactNode, useImperativeHandle, useRef } from "react";
+import { forwardRef, useImperativeHandle, useRef } from "react";
 import "./styles.css";
+import { MutatingDots, TailSpin } from "react-loader-spinner";
+
+type SpinnerType = "TailSpin" | "MutatingDots";
 
 export type ModalHandle = {
   showModal: () => void;
@@ -9,10 +12,11 @@ export type ModalHandle = {
 };
 
 type ModalProps = {
-  children: ReactNode;
+  spinner: SpinnerType;
+  text: string;
 };
 
-const Modal = forwardRef<ModalHandle, ModalProps>(({ children }, ref) => {
+const Modal = forwardRef<ModalHandle, ModalProps>(({ spinner, text }, ref) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   useImperativeHandle(ref, () => ({
@@ -22,7 +26,31 @@ const Modal = forwardRef<ModalHandle, ModalProps>(({ children }, ref) => {
 
   return (
     <dialog ref={dialogRef} className="modal">
-      <div className="modal-container">{children}</div>
+      <div className="modal-container">
+        {spinner === "TailSpin" && (
+          <TailSpin
+            visible={true}
+            height="80"
+            width="80"
+            color="#004a5f"
+            ariaLabel="tail-spin-loading"
+            radius="1"
+          />
+        )}
+
+        {spinner === "MutatingDots" && (
+          <MutatingDots
+            visible={true}
+            height="100"
+            width="100"
+            color="#004a5f"
+            secondaryColor="#004a5f"
+            radius="12.5"
+            ariaLabel="mutating-dots-loading"
+          />
+        )}
+        <p className="modal-text" dangerouslySetInnerHTML={{ __html: text }} />
+      </div>
     </dialog>
   );
 });
