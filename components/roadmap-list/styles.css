@@ -20,7 +20,7 @@
 
 .roadmap-list a li {
     padding: 12px 10px;
-    border-bottom: solid 1px #004a5f;
+    border-bottom: solid 1px var(--foreground);
     list-style-type: none;
 
     &:hover {

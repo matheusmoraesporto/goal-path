@@ -1,6 +1,6 @@
 header {
     background-color: #66d4f3;
-    color: #004a5f;
+    color: var(--foreground);
 }
 
 .header-container {
@@ -14,11 +14,11 @@ header {
 }
 
 .btn-signout {
-  border: 1px solid #004a5f;
+  border: 1px solid var(--foreground);
   border-radius: 5px;
   padding: 10px;
   background-color: #66d4f3;
-  color: #004a5f;
+  color: var(--foreground);
   /* Config for icons */
   display: flex;
   align-items: center;
@@ -27,7 +27,7 @@ header {
   
   &:hover {
     cursor: pointer;
-    background-color: #004a5f;
-    color: #ffffff;
+    background-color: var(--foreground);
+    color: var(--background);
   }
 }
