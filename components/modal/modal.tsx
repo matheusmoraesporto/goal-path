@@ -22,7 +22,7 @@ const Modal = forwardRef<ModalHandle, ModalProps>(({ children }, ref) => {
 
   return (
     <dialog ref={dialogRef} className="modal">
-      {children}
+      <div className="modal-container">{children}</div>
     </dialog>
   );
 });

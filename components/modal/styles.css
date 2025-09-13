@@ -1,21 +1,29 @@
 .modal {
-    /* TODO: Se sobrar tempo, ajustar breakpoint para o mobile */
-    width: 320px;
     background: #ffffff;
     color: #004a5f;
     border-radius: 5px;
     border: none;
     box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
-    align-items: center;
-    justify-content: center;
 
     /* Centraliza */
-    margin: 0 auto; 
+    margin: 0 auto;
     padding: 20px;
-    width: 60%;
-    margin-top: 10%;
+    width: 70%;
+    margin-top: 50px;
+}
+
+@media (max-width: 770px) {
+    .modal {
+        width: 98%;
+    }
 }
 
 .modal::backdrop {
     background: rgba(0, 0, 0, .7);
+}
+
+.modal-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
