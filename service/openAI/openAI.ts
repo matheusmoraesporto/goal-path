@@ -11,7 +11,6 @@ const client = new OpenAI({
 
 const fetchDataFromOpenAI = async (userPreferences: UserPreferences) => {
   try {
-    // TODO: Remover console.logs
     const input = `
         ${generateUserPreferencesPrompt(userPreferences)}
         ${responseTemplate}`;

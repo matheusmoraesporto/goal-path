@@ -28,7 +28,12 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
         </Link>
       </div>
       {steps.map((st: Step, i: number) => (
-        <StepTile key={st.id} step={st} lastChild={i === steps.length - 1} />
+        <StepTile
+          key={st.id}
+          roadmapId={id}
+          step={st}
+          lastChild={i === steps.length - 1}
+        />
       ))}
     </div>
   );

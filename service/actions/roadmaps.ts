@@ -166,8 +166,6 @@ export async function createRoadmap(
     const userUUID = session?.user?.id;
     newRoadmapId = await saveRoadmap(userUUID!, userPreferences);
     await saveSteps(newRoadmapId, steps);
-
-    // TODO: Investigar pq está dando erro no redirect
   } catch (error) {
     console.log("erro ocorreu:", error);
     return {
