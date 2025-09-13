@@ -1,5 +1,5 @@
 :root {
-  --background: var(--background);
+  --background: #ffffff;
   --foreground: #004a5f;
 }
 
@@ -58,11 +58,11 @@ select {
 }
 
 .btn-primary {
-  border: 1px solid  var(--foreground);
+  border: 1px solid #004a5f;
   border-radius: 5px;
   padding: 10px;
-  background-color: var(--foreground);
-  color: var(--background);
+  background-color: #004a5f;
+  color: #ffffff;
   /* Config for icons */
   display: flex;
   align-items: center;
@@ -72,17 +72,17 @@ select {
 
   &:hover {
     cursor: pointer;
-    color: var(--foreground);
+    color: #004a5f;
     background-color: #66d4f3;
   }
 }
 
 .btn-secondary {
-  border: 1px solid var(--foreground);
+  border: 1px solid #004a5f;
   border-radius: 5px;
   padding: 10px;
-  background-color: var(--background);
-  color: var(--foreground);
+  background-color: #ffffff;
+  color: #004a5f;
   /* Config for icons */
   display: flex;
   align-items: center;
@@ -91,8 +91,8 @@ select {
 
   &:hover {
     cursor: pointer;
-    background-color: var(--foreground);
-    color: var(--background);
+    background-color: #004a5f;
+    color: #ffffff;
   }
 }
 
@@ -105,5 +105,5 @@ input[type="checkbox"],
 input[type="radio"] {
   width: 18px;
   height: 18px;
-  accent-color: var(--foreground);
+  accent-color: #004a5f;
 }
