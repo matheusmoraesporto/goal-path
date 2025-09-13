@@ -43,4 +43,15 @@ async function getStepsByRoadmap(roadmapId: string): Promise<Step[]> {
   }
 }
 
-export { getStepsByRoadmap, saveSteps };
+async function setStepStatus(stepId: string, isCompleted: boolean) {
+  try {
+    await sql`
+      UPDATE steps SET is_completed = ${isCompleted} WHERE id = ${stepId}
+    `;
+  } catch (error) {
+    console.error("Failed to update step status:", error);
+    throw new Error("Failed to update step status.");
+  }
+}
+
+export { getStepsByRoadmap, saveSteps, setStepStatus };

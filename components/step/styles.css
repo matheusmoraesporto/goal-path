@@ -60,10 +60,13 @@
     text-decoration: line-through;
 }
 
-.step-progress-icon {
+.step-icon-container {
     position: absolute;
-    background-color: #ffffff;
     cursor: pointer;
+}
+
+.step-progress-icon {
+    background-color: #ffffff;
 }
 
 .step-progress-icon-done {
