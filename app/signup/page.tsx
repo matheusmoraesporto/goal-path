@@ -6,7 +6,10 @@ import { useActionState } from "react";
 
 export default function SignUpPage() {
   const initialState: FormUserState = { message: null, errors: {} };
-  const [state, formAction] = useActionState(createUser, initialState);
+  const [state, formAction] = useActionState(
+    createUser as (prevState: FormUserState | undefined, formData: FormData) => Promise<FormUserState | undefined>,
+    initialState
+  );
 
   return (
     <div className="signup-page-container centered-div">
@@ -16,12 +19,12 @@ export default function SignUpPage() {
           <input
             type="text"
             name="name"
-            defaultValue={state.values?.name ?? ""}
+            defaultValue={state?.values?.name ?? ""}
           />
         </div>
 
         <div className="input-error" aria-live="polite" aria-atomic="true">
-          {state.errors?.name &&
+          {state?.errors?.name &&
             state.errors.name.map((error: string) => (
               <p key={error}>{error}</p>
             ))}
@@ -32,12 +35,12 @@ export default function SignUpPage() {
           <input
             type="password"
             name="password"
-            defaultValue={state.values?.password ?? ""}
+            defaultValue={state?.values?.password ?? ""}
           />
         </div>
 
         <div className="input-error" aria-live="polite" aria-atomic="true">
-          {state.errors?.password &&
+          {state?.errors?.password &&
             state.errors.password.map((error: string) => (
               <p key={error}>{error}</p>
             ))}

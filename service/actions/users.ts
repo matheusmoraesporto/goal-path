@@ -55,6 +55,7 @@ const createUser = async (prevState: FormUserState, formData: FormData) => {
 
   try {
     await saveUser(name, password);
+    console.log("Usuário criado com sucesso");
   } catch (error) {
     console.log("Erro ao criar usuário:", error);
     return {
@@ -63,9 +64,15 @@ const createUser = async (prevState: FormUserState, formData: FormData) => {
     };
   }
 
-  console.log("Usuário criado com sucesso");
-
-  // TODO: Fazer login automático após cadastro
+  try {
+    await authenticateNewUser(name, password);
+  } catch (error) {
+    console.log("Erro ao autenticar novo usuário:", error);
+    return {
+      values: { name, password },
+      message: "Usuário criado, mas falha ao autenticar.",
+    };
+  }
 
   redirect("/");
 };
@@ -95,6 +102,27 @@ export async function authenticate(
       }
     }
     throw error;
+  }
+}
+
+async function authenticateNewUser(name: string, password: string) {
+  try {
+    await signIn("credentials", {
+      name,
+      password,
+      redirect: false,
+    });
+  } catch (error) {
+    if (error instanceof AuthError && error.type === "CredentialsSignin") {
+      return {
+        values: { name, password },
+        message: "Credenciais inválidas.",
+      };
+    }
+    return {
+      values: { name, password },
+      message: "Erro ao autenticar.",
+    };
   }
 }
 

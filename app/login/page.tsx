@@ -4,6 +4,7 @@ import { authenticate } from "../../service/actions/users";
 import { useSearchParams } from "next/navigation";
 import { useActionState } from "react";
 import "./styles.css";
+import Link from "next/link";
 
 export default function LoginPage() {
   const searchParams = useSearchParams();
@@ -47,6 +48,16 @@ export default function LoginPage() {
           Entrar
         </button>
       </form>
+
+      <div className="login-signup-separator-container">
+        <div className="login-signup-separator" />
+        <span>ou</span>
+        <div className="login-signup-separator" />
+      </div>
+
+      <Link className="btn-google-login btn-secondary" href="/signup">
+        Criar nova conta
+      </Link>
     </div>
   );
 }
