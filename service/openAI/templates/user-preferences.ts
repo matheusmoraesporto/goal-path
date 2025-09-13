@@ -5,6 +5,7 @@ import {
 } from "@/app/types/user-preferences";
 import {
   translateDeveloperLevel,
+  translateFrequencyMetricDuration,
   translateMetricDuration,
 } from "@/app/types/utils";
 
@@ -25,7 +26,12 @@ const generateUserPreferencesPrompt = (userPreferences: UserPreferences) => {
 	Considere que este plano de estudos é para ${levelText}, ${experiencesText}.
 	Considere que o plano de estudos deve ser projetado para durar aproximadamente ${
     roadmapDuration.amount
-  } ${translateMetricDuration(roadmapDuration)}.
+  } ${translateMetricDuration(
+    roadmapDuration
+  )} e que o usuário pretende acessá-lo ${
+    userPreferences.frequency.amount
+  } vez(es) por ${translateFrequencyMetricDuration(userPreferences.frequency)}.
+  Para cada etapa do plano de estudos, sugira atividades de aprendizado, recursos e metas que ajudem o usuário a alcançar seu objetivo de aprender ${techGoal}.
 	Dê preferência para conteúdos no formato de ${contentTypeText}, ${languageText} e ${paymentText}.`;
 };
 

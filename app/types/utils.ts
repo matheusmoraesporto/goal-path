@@ -1,4 +1,4 @@
-import { DeveloperLevel, MetricDuration } from "./user-preferences";
+import { DeveloperLevel, Frequency, MetricDuration } from "./user-preferences";
 
 const translateDeveloperLevel = (level: DeveloperLevel) => {
   switch (level) {
@@ -28,4 +28,21 @@ const translateMetricDuration = (metricDuration: MetricDuration) => {
   }
 };
 
-export { translateDeveloperLevel, translateMetricDuration };
+const translateFrequencyMetricDuration = (frequency: Frequency) => {
+  const { amount, metric } = frequency;
+
+  switch (metric) {
+    case "weeks":
+      return amount > 1 ? "semanas" : "semana";
+    case "months":
+      return amount > 1 ? "meses" : "mês";
+    default:
+      return metric;
+  }
+};
+
+export {
+  translateDeveloperLevel,
+  translateFrequencyMetricDuration,
+  translateMetricDuration,
+};

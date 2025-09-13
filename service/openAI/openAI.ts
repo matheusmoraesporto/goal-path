@@ -23,8 +23,6 @@ const fetchDataFromOpenAI = async (userPreferences: UserPreferences) => {
       input: input,
     }, { timeout: 120000 });
 
-    console.log("OpenAI response", res);
-    console.log("OpenAI response output", res.output);
     console.log("OpenAI response output text", res.output_text);
     return res.output_text;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
