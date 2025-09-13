@@ -5,7 +5,7 @@ import postgres from "postgres";
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
-async function saveSteps(roadmapId: number, steps: Step[]) {
+async function saveSteps(roadmapId: string, steps: Step[]) {
   try {
     await Promise.all(
       steps.map(

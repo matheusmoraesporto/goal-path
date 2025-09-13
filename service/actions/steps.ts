@@ -10,10 +10,11 @@ const updateStepStatus = async (
 ) => {
   try {
     await setStepStatus(stepId, isCompleted);
-    revalidateTag(`/roadmap/${roadmapId}`);
   } catch (error) {
     console.error("Failed to toggle step status:", error);
   }
+
+  revalidateTag(`/roadmap/${roadmapId}`);
 };
 
 export { updateStepStatus };

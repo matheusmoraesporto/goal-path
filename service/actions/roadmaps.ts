@@ -17,6 +17,7 @@ import { auth } from "@/auth";
 import { Step } from "@/app/types/step";
 import { saveRoadmap } from "../database/roadmap";
 import { saveSteps } from "../database/steps";
+import { revalidateTag } from "next/cache";
 
 export type FormRoadmapState = {
   values?: {
@@ -137,6 +138,7 @@ export async function createRoadmap(
     };
   }
 
+  let newRoadmapId = "";
   try {
     const userPreferences: UserPreferences = {
       roadmapName: validatedFields.data.roadmapName,
@@ -162,11 +164,10 @@ export async function createRoadmap(
     const steps = await generateStepsFromAI(userPreferences);
     const session = await auth();
     const userUUID = session?.user?.id;
-    const newRoadmapId = await saveRoadmap(userUUID!, userPreferences);
+    newRoadmapId = await saveRoadmap(userUUID!, userPreferences);
     await saveSteps(newRoadmapId, steps);
 
     // TODO: Investigar pq está dando erro no redirect
-    redirect(`/roadmap/${newRoadmapId}`);
   } catch (error) {
     console.log("erro ocorreu:", error);
     return {
@@ -174,6 +175,9 @@ export async function createRoadmap(
       message: "Erro ao criar plano de estudos. Tente novamente.",
     };
   }
+
+  revalidateTag("/");
+  redirect(`/roadmap/${newRoadmapId}`);
 }
 
 async function generateStepsFromAI(
